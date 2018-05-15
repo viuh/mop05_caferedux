@@ -1,5 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {createStore} from 'redux';
+import counterReducer from './reducer';
+
+
+
+const store = createStore(counterReducer)
+
+store.subscribe(() => {
+  const storeNow = store.getState()
+  console.log("tila ny", storeNow)
+})
 
 const Button = (props) => {
 
@@ -139,6 +150,11 @@ class App extends React.Component {
           <Button handleClick={this.addOne(1)} text={this.state.valinnat[1]}/>
           <Button handleClick={this.addOne(2)} text={this.state.valinnat[2]}/>
         </div>
+        <hr/>
+        <div>
+          {store.getState()}
+        </div>
+        <hr/>
         <h1>Statistiikka</h1>
         <div>{Statistics(this.state)}</div>
         </div>
@@ -146,7 +162,14 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(
+/*ReactDOM.render(
   <App />,
   document.getElementById('root')
-)
+)*/
+
+const renderApp = () => {
+  ReactDOM.render(<App />, document.getElementById('root'))
+}
+
+renderApp()
+store.subscribe(renderApp)
