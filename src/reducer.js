@@ -1,6 +1,6 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import {createStore} from 'redux'
+//import React from 'react'
+//import ReactDOM from 'react-dom'
+//import {createStore} from 'redux'
 
 const initialState = {
   good: 0,
@@ -20,9 +20,10 @@ const counterReducer = (state = initialState, action) => {
     case 'ZERO':
       return { good : 0, ok: 0, bad: 0 }
     case 'DO_NOTHING':
+      return state 
+    default:
       return state
   }
-  return state
 }
 
 
